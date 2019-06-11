@@ -5,16 +5,16 @@
 
 function getRavensNames(quantity) {
     if (quantity == 1 || quantity == 21) {
-        console.log("На ветке сидит " + quantity + " ворона");
+        console.log(`На ветке сидит ${quantity} ворона`);
     }
     else if (quantity == 2 || quantity == 3 || quantity == 4 || quantity == 22 || quantity == 23 || quantity == 24) {
-        console.log("На ветке сидит " + quantity + " вороны");
+        console.log(`На ветке сидит ${quantity} вороны`);
     }
     else if (quantity == 0) {
         console.log("На ветке нет ворон");
     }
     else {
-        console.log("На ветке сидит " + quantity + " ворон");
+        console.log(`На ветке сидит ${quantity} ворон`);
     }
 }
 

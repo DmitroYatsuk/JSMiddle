@@ -1,7 +1,7 @@
 //The Stone-Scissors-Paper Game
-var btn = document.getElementById("play");
-var player1 = document.getElementById("player1");
-var player2 = document.getElementById("player2");
+let btn = document.getElementById("play");
+let player1 = document.getElementById("player1");
+let player2 = document.getElementById("player2");
 
 function getPlayerResult() {
     return Math.floor((Math.random() * 3) + 1);
@@ -23,12 +23,12 @@ function getNameById(playerResult) {
 }
 
 function determineWinner(playerResult1, playerResult2) {
-    if ((playerResult1 == 1 && playerResult2 == 2) ||
-        (playerResult1 == 2 && playerResult2 == 3) ||
-        (playerResult1 == 3 && playerResult2 == 1)) {
+    if ((playerResult1 === 1 && playerResult2 === 2) ||
+        (playerResult1 === 2 && playerResult2 === 3) ||
+        (playerResult1 === 3 && playerResult2 === 1)) {
         return 1;
     }
-    else if (playerResult1 == playerResult2) {
+    else if (playerResult1 === playerResult2) {
         return 0;
     }
     else {
@@ -54,8 +54,8 @@ function printResult(winner, id = "result") {
 }
 
 function runGame() {
-    var resultPlayer1 = getPlayerResult();
-    var resultPlayer2 = getPlayerResult();
+    let resultPlayer1 = getPlayerResult();
+    let resultPlayer2 = getPlayerResult();
     player1.innerHTML = getNameById(resultPlayer1);
     player2.innerHTML = getNameById(resultPlayer2);
 

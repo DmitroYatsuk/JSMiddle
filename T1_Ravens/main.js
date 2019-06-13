@@ -23,4 +23,4 @@ getRavensNames(21);  // На ветке сидит 21 ворона
 getRavensNames(2);  // На ветке сидит 2 вороны
 getRavensNames(24);  // На ветке сидит 24 вороны
 getRavensNames(7);  // На ветке сидит 7 ворон
-getRavensNames(25);  // На ветке сидит 25 ворон
+getRavensNames(1700);  // На ветке сидит 25 ворон

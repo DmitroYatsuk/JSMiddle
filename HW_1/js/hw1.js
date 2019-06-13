@@ -1,7 +1,7 @@
 // Main function call
 (function run() {
-    var resultStr = "";
-    var total = 0;
+    let resultStr = "";
+    let total = 0;
 
     // Random number generation
     function getRndNumber() {
@@ -13,7 +13,7 @@
     }
     // Compare two numbers
     function isNumbersEqual(num1, num2) {
-        if (num1 == num2) {
+        if (num1 === num2) {
             setResult("Выпал дубль. Число " + num1 + " <br>");
         }
     }
@@ -35,14 +35,14 @@
         document.getElementById(id).innerHTML = resultStr;
     }
 
-    for (var i = 0; i < 15; i++) {
-        if (i == 8 || i == 13) {
+    for (let i = 0; i < 15; i++) {
+        if (i === 8 || i === 13) {
             continue;
         }
         // First random number generation:
-        var first = getRndNumber();
+        let first = getRndNumber();
         // Second random number generation:    
-        var second = getRndNumber();
+        let second = getRndNumber();
         // Print result    
         setResult("Первая кость: " + first + " Вторая кость: " + second + "<br>");
         // Compare two numbers:

@@ -19,8 +19,8 @@ function getRavensNames(n) {
 // Tests
 getRavensNames(0);  // На ветке сидит 0 ворон
 getRavensNames(1);  // На ветке сидит 1 ворона
-getRavensNames(21);  // На ветке сидит 21 ворона
+getRavensNames(101);  // На ветке сидит 101 ворона
 getRavensNames(2);  // На ветке сидит 2 вороны
 getRavensNames(24);  // На ветке сидит 24 вороны
-getRavensNames(7);  // На ветке сидит 7 ворон
-getRavensNames(1700);  // На ветке сидит 25 ворон
+getRavensNames(75466);  // На ветке сидит 75466 ворон
+getRavensNames(1700);  // На ветке сидит 1700 ворон

@@ -1,7 +1,8 @@
 var btn = document.getElementById("play");
 
 function printResult(resultStr, id = "result") {
-   document.getElementById(id).innerHTML = resultStr;
+   resultStr.forEach(item => { console.log(item) })
+   //document.getElementById(id).innerHTML = resultStr;
 }
 
 function transform() {
@@ -11,7 +12,20 @@ function transform() {
    //printResult(removedData);
    //printResult(data);
 
-   
+   /* 2. Используйте функцию forEach.
+   Внутри цикла создайте новый массив объектов.
+   В процессе создания нового массива объектов, избавьтесь от ключа id. */
+   var newArr = [];
+   data.forEach(function (item, index) {
+      newArr.push({
+         url: item.url,
+         name: item.name,
+         params: item.params,
+         description: item.description,
+         date: item.date,
+      })
+   })
+   //printResult(newArr);
 }
 
 

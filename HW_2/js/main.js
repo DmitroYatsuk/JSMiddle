@@ -1,3 +1,4 @@
+'use strict';
 //The Stone-Scissors-Paper Game
 let btn = document.getElementById("play");
 let player1 = document.getElementById("player1");

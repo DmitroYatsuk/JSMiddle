@@ -3,7 +3,7 @@
 Все остальное превратить в строку формата «foods, fruits…» преобразование в строку выполнить с помощью одного метода.
  */
 let goods = ['foods', 'fruits', 'technics', 'phones', 'computers'];
-let deletedGoods = goods.splice(2,1);
+let deletedGoods = goods.splice(2, 1);
 let strGoods = goods.join(", ");
 
 console.log(strGoods);
@@ -13,8 +13,13 @@ console.log(strGoods);
 
 function currentDate() {
     let curDate = new Date();
-    return `${curDate.getHours()}:${curDate.getMinutes()} ${curDate.getDate()}/${curDate.getMonth()}/${curDate.getFullYear()}`
- }
+    return `${lessThanTen(curDate.getHours())}:${lessThanTen(curDate.getMinutes())} ${lessThanTen(curDate.getDate())}/${lessThanTen(curDate.getMonth() + 1)}/${curDate.getFullYear()}`
+}
+
+function lessThanTen(num) {
+    return num < 10 ? "0" + num : num;
+}
+
 
 console.log(currentDate());
 
@@ -32,6 +37,6 @@ console.log(getExt('/home/user/project/script.js'));
 
 let arrIn = [1, 2, 2, 4, 5, 4, 7, 8, 7, 3, 6];
 
-let arrOut = arrIn.filter((item, idx) => {return arrIn.indexOf(item) === idx})
+let arrOut = arrIn.filter((item, idx) => { return arrIn.indexOf(item) === idx })
 
 console.log(arrOut);

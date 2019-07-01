@@ -1,6 +1,6 @@
 'use strict';
 
-var btn = document.getElementById("play");
+let btn = document.getElementById("play");
 
 function printResult(resultStr) {
    resultStr.forEach(item => { console.log(item) })
@@ -8,19 +8,19 @@ function printResult(resultStr) {
 
 function transform() {
    // Copy of source data
-   var copiedData = data.slice();
+   let copiedData = data.slice();
 
    /* 1. С помощью функции splice необходимо вырезать 6-й элемент массива. 
    В результате ваш массив должен стать короче на один элемент. */
 
-   var removedData = copiedData.splice(6, 1);
+   let removedData = copiedData.splice(6, 1);
 
    /* 2. Используйте функцию forEach.
    Внутри цикла создайте новый массив объектов.
    В процессе создания нового массива объектов, избавьтесь от ключа id. */
 
-   var newArr = [];
-   copiedData.forEach(function (item, index) {
+   let newArr = [];
+   copiedData.forEach((item, index) => {
       newArr.push({
          url: item.url,
          name: item.name,
@@ -52,31 +52,46 @@ function transform() {
    13. Полученный результат печатаем в консоль.
    Для печати используем отдельную функцию как в прошлых заданиях. То есть вынесете console.log в отдельную функцию. */
 
-   var mappedArr = newArr.map(item => {
+   let mappedArr = newArr.map(item => {
       return {
          url: `http://${item.url}`,
          name: `${item.name}`.charAt(0).toLocaleUpperCase() + `${item.name}`.slice(1).toLowerCase(),
          //name: String(item.name).charAt(0).toLocaleUpperCase() + String(item.name).slice(1).toLowerCase(),
          params: `${item.params.status}=>${item.params.progress}`,
-         description: `${item.description}`.substring(0, 15),
-         //description: String(item.description).substring(0, 15),
-         date: moment(item.date).format("YYYY/MM/DD HH:mm"),
-         //date: newDate(item.date),
+         //description: shrinkString(item.description),
+         description: `${item.description}`.substring(0, 15) + "...",
+         //description: String(item.description).substring(0, 15) + "...",
+         //date: moment(item.date).format("YYYY/MM/DD HH:mm"),
+         date: newDate(item.date),
          isVisible: item.params.status,
       }
    })
 
    // Date formatting fn
    function newDate(date) {
-      var tmpDate = new Date(date);
+      let tmpDate = new Date(date);
       return tmpDate.getFullYear() + "/" +
-         tmpDate.getMonth() + "/" +
-         tmpDate.getDate() + " " +
-         tmpDate.getHours() + ":" +
-         tmpDate.getMinutes();
+         lessThanTen(tmpDate.getMonth() + 1) + "/" +
+         lessThanTen(tmpDate.getDate()) + " " +
+         lessThanTen(tmpDate.getHours()) + ":" +
+         lessThanTen(tmpDate.getMinutes());
    }
 
-   var filteredArr = mappedArr.filter(item => item.isVisible == true);
+   function lessThanTen(num) {
+      return num < 10 ? "0" + num : num;
+   }
+
+   // Shrink string
+   function shrinkString(str) {
+      if (str.length >= 15) {
+         return str.substring(0, 15) + "...";
+      }
+      else {
+         return str;
+      }
+   }
+
+   let filteredArr = mappedArr.filter(item => item.isVisible == true);
    printResult(filteredArr);
 }
 

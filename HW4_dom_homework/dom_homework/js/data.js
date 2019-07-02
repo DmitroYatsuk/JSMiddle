@@ -11,7 +11,7 @@ var data = [{
 	date : 1422153200637
 },{
 	url: "desktopwallpapers.org.ua/mini/201507/40068.jpg",
-	name: "DEWOO",
+	name: "DAEWOO",
 	id : 2,
 	params: {
 		status: true,

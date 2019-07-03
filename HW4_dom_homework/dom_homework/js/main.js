@@ -144,7 +144,6 @@
         }
 
         function createElement() {
-            let resultHTML = "";
             for (let i = 0; i < galleryElemQuantity; i++) {
                 const divOne = document.createElement("div"),
                         divTwo = document.createElement("div"),
@@ -160,14 +159,16 @@
                 divThree.classList.add("text-muted");
                 divThree.textContent = mappedArr[i].name;
                 divFour.classList.add("text-muted", "top-padding");
-
+                divFour.textContent = mappedArr[i].description;
                 divFive.classList.add("text-muted");
+                divFive.textContent = mappedArr[i].date;
                 divTwo.appendChild(divThree);
-                image.appendChild(divTwo);
+                divTwo.appendChild(divFour);
+                divTwo.appendChild(divFive);
                 divOne.appendChild(image);
+                divOne.appendChild(divTwo);
                 thirdBlock.appendChild(divOne);
             }
-            //thirdBlock.innerHTML = thirdItemTemplate;
             firstGroup.classList.add("hide");
             firstGroup.classList.remove("show");
             secondGroup.classList.add("hide");

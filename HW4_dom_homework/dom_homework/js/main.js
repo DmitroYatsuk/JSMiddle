@@ -4,7 +4,10 @@
     let btn = document.getElementById("play"),
         firstBlock = document.querySelector('#first-line'),
         secondBlock = document.querySelector('#second-line'),
-        thirdBlock = document.querySelector('#third-line');
+        thirdBlock = document.querySelector('#third-line'),
+        firstGroup = document.querySelector('.first-group'),
+        secondGroup = document.querySelector('.second-group'),
+        thirdGroup = document.querySelector('.third-group');
 
     // Copy of source data
     let copiedData = data.slice();
@@ -110,9 +113,12 @@
                 resultHTML += tempItem;
             }
             firstBlock.innerHTML = resultHTML;
-            document.querySelector('.first-group').classList.add("show");
-            document.querySelector('.second-group').classList.add("hide");
-            document.querySelector('.third-group').classList.add("hide");
+            firstGroup.classList.add("show");
+            firstGroup.classList.remove("hide");
+            secondGroup.classList.add("hide");
+            secondGroup.classList.remove("show");
+            thirdGroup.classList.add("hide");
+            thirdGroup.classList.remove("show");
         }
 
         function templateStrings() {
@@ -129,16 +135,45 @@
                 resultHTML += tempItem;
             }
             secondBlock.innerHTML = resultHTML;
-            document.querySelector('.first-group').classList.add("hide");
-            document.querySelector('.second-group').classList.add("show");
-            document.querySelector('.third-group').classList.add("hide");
+            firstGroup.classList.add("hide");
+            firstGroup.classList.remove("show");
+            secondGroup.classList.add("show");
+            secondGroup.classList.remove("hide");
+            thirdGroup.classList.add("hide");
+            thirdGroup.classList.remove("show");
         }
 
         function createElement() {
-            thirdBlock.innerHTML = thirdItemTemplate;
-            document.querySelector('.first-group').classList.add("hide");
-            document.querySelector('.second-group').classList.add("hide");
-            document.querySelector('.third-group').classList.add("show");
+            let resultHTML = "";
+            for (let i = 0; i < galleryElemQuantity; i++) {
+                const divOne = document.createElement("div"),
+                        divTwo = document.createElement("div"),
+                        divThree = document.createElement("div"),
+                        divFour = document.createElement("div"),
+                        divFive = document.createElement("div"),
+                        image = document.createElement("img");
+                divOne.classList.add("col-sm-3", "col-xs-6");
+                image.src = mappedArr[i].url;
+                image.alt = mappedArr[i].name;
+                image.classList.add("img-thumbnail");
+                divTwo.classList.add("info-wrapper");
+                divThree.classList.add("text-muted");
+                divThree.textContent = mappedArr[i].name;
+                divFour.classList.add("text-muted", "top-padding");
+
+                divFive.classList.add("text-muted");
+                divTwo.appendChild(divThree);
+                image.appendChild(divTwo);
+                divOne.appendChild(image);
+                thirdBlock.appendChild(divOne);
+            }
+            //thirdBlock.innerHTML = thirdItemTemplate;
+            firstGroup.classList.add("hide");
+            firstGroup.classList.remove("show");
+            secondGroup.classList.add("hide");
+            secondGroup.classList.remove("show");
+            thirdGroup.classList.add("show");
+            thirdGroup.classList.remove("hide");
         }
     }
 

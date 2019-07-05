@@ -6,8 +6,8 @@ let hoursFirstNumber = document.querySelector(".hours .first .number"),
     secondsFirstNumber = document.querySelector(".seconds .first .number"),
     secondsSecondNumber = document.querySelector(".seconds .second .number"),
     tickSign = document.querySelector(".tick"),
-    todayDate = document.querySelectorAll(".col-md-12", ".today-date"),
-    container = document.querySelector(".container div:nth-child(3)");
+    todayDate = document.querySelector(".col-md-12", ".today-date"),
+    container = document.querySelector("body > div > div > div:nth-child(3) > div");
 
 function watch() {
     let curDate = new Date();
@@ -85,18 +85,22 @@ function watch() {
     getDayOfWeek();
     getMonthOfYear();
 
-    todayDate[0].textContent = `Сегодня ${dayOfWeek}, ${dayOfMonth} ${monthOfYear}.`;
-    container.textContent = "test text"
+    todayDate.textContent = `Сегодня ${dayOfWeek}, ${dayOfMonth} ${monthOfYear}.`;
+    container.textContent = `До 2020 года осталось ${Math.floor((new Date('January 1, 2020 00:20:00') - curDate) / (3600000 * 24))} дней.`
 
     hoursFirstNumber.textContent = curDate.getHours().toString().slice(0, 1);
     hoursSecondNumber.textContent = curDate.getHours().toString().slice(1, 2);
     minutesFirstNumber.textContent = curDate.getMinutes().toString().slice(0, 1);
     minutesSecondNumber.textContent = curDate.getMinutes().toString().slice(1, 2);
-    secondsFirstNumber.textContent = curDate.getSeconds().toString().slice(0, 1);
-    secondsSecondNumber.textContent = curDate.getSeconds().toString().slice(1, 2);
+    secondsFirstNumber.textContent = getFirstDigit(curDate.getSeconds());
+    secondsSecondNumber.textContent = getSecondDigit(curDate.getSeconds());
 
-    function lessThanTen(num) {
-        return num < 10 ? "0" + num : num;
+    function getFirstDigit(num) {
+        return num < 10 ? "0" : `${num}`.slice(0, 1);
+    }
+
+    function getSecondDigit(num) {
+        return num < 10 ? `${num}`.slice(0, 1) : `${num}`.slice(1, 2);
     }
 
 }

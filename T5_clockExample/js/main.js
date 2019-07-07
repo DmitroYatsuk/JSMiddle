@@ -6,7 +6,6 @@
             minutesSecondNumber = document.querySelector(".minutes .second .number"),
             secondsFirstNumber = document.querySelector(".seconds .first .number"),
             secondsSecondNumber = document.querySelector(".seconds .second .number"),
-            tickSign = document.querySelector(".tick"),
             todayDate = document.querySelector(".col-md-12", ".today-date"),
             container = document.querySelector("body > div > div > div:nth-child(3) > div");
 
@@ -87,12 +86,12 @@
             getMonthOfYear();
 
             todayDate.textContent = `Сегодня ${dayOfWeek}, ${dayOfMonth} ${monthOfYear}.`;
-            container.textContent = `До 2020 года осталось ${Math.floor((new Date('January 1, 2020 00:20:00') - curDate) / (3600000 * 24))} дней.`
+            container.textContent = `До 2020 года осталось ${Math.ceil((new Date('January 1, 2020 00:00:00') - curDate) / (3600000 * 24))} дней.`
 
-            hoursFirstNumber.textContent = curDate.getHours().toString().slice(0, 1);
-            hoursSecondNumber.textContent = curDate.getHours().toString().slice(1, 2);
-            minutesFirstNumber.textContent = curDate.getMinutes().toString().slice(0, 1);
-            minutesSecondNumber.textContent = curDate.getMinutes().toString().slice(1, 2);
+            hoursFirstNumber.textContent = getFirstDigit(curDate.getHours());
+            hoursSecondNumber.textContent = getSecondDigit(curDate.getHours());
+            minutesFirstNumber.textContent = getFirstDigit(curDate.getMinutes());
+            minutesSecondNumber.textContent = getSecondDigit(curDate.getMinutes());
             secondsFirstNumber.textContent = getFirstDigit(curDate.getSeconds());
             secondsSecondNumber.textContent = getSecondDigit(curDate.getSeconds());
 

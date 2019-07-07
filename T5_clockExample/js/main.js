@@ -19,6 +19,9 @@
 
             function getDayOfWeek() {
                 switch (curDate.getDay()) {
+                    case 0:
+                        dayOfWeek = "воскресенье";
+                        break;
                     case 1:
                         dayOfWeek = "понедельник";
                         break;
@@ -36,9 +39,6 @@
                         break;
                     case 6:
                         dayOfWeek = "суббота";
-                        break;
-                    case 7:
-                        dayOfWeek = "воскресенье";
                         break;
                 }
             }

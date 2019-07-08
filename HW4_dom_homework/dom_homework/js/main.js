@@ -81,12 +81,11 @@
                     <div class="text-muted">$date</div>\
                     </div>\
                     </div>';
-                let tempItem = replaceItemTemplate
+                resultHTML += replaceItemTemplate
                     .replace(/\$name/gi, mappedArr[i].name)
                     .replace("$url", mappedArr[i].url)
                     .replace("$description", mappedArr[i].description)
                     .replace("$date", mappedArr[i].date);
-                resultHTML += tempItem;
             }
             firstBlock.innerHTML = resultHTML;
             firstGroup.classList.add("show");

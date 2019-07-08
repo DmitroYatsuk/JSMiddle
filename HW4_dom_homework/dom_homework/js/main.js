@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-   let btn = document.getElementById("play"),
+    const btn = document.getElementById("play"),
         firstBlock = document.querySelector('#first-line'),
         secondBlock = document.querySelector('#second-line'),
         thirdBlock = document.querySelector('#third-line'),
@@ -10,56 +10,40 @@
         lineSelector = document.getElementById("line-selector"),
         typeSelector = document.getElementById("type-selector");
 
-    // Copy of source data
-    let copiedData = data.slice();
-
-    //Remove id and params from data[]
-    let newArr = [];
-    copiedData.forEach(item => {
-        newArr.push({
-            url: item.url,
-            name: item.name,
-            description: item.description,
-            date: item.date,
-        })
-    })
-
-    //Create new mapped array
-    let mappedArr = newArr.map(item => {
-        return {
-            url: `http://${item.url}`,
-            name: `${item.name}`.charAt(0).toLocaleUpperCase() + `${item.name}`.slice(1).toLowerCase(),
-            description: shrinkString(item.description),
-            date: moment(item.date).format("YYYY/MM/DD HH:mm"),
-            //date: newDate(item.date),
-        }
-    })
-
-    // Date formatting fn
-    function newDate(date) {
-        let tmpDate = new Date(date);
-        return tmpDate.getFullYear() + "/" +
-            lessThanTen(tmpDate.getMonth() + 1) + "/" +
-            lessThanTen(tmpDate.getDate()) + " " +
-            lessThanTen(tmpDate.getHours()) + ":" +
-            lessThanTen(tmpDate.getMinutes());
-    }
-
-    function lessThanTen(num) {
-        return num < 10 ? "0" + num : num;
-    }
-
-    // Shrink string
-    function shrinkString(str) {
-        if (str.length >= 15) {
-            return str.substring(0, 15) + "...";
-        }
-        else {
-            return str;
-        }
-    }
-
     function init() {
+        // Copy of source data
+        let copiedData = data.slice();
+
+        //Remove id and params from data[]
+        let newArr = [];
+        copiedData.forEach(item => {
+            newArr.push({
+                url: item.url,
+                name: item.name,
+                description: item.description,
+                date: item.date,
+            })
+        })
+
+        //Create new mapped array
+        let mappedArr = newArr.map(item => {
+            return {
+                url: `http://${item.url}`,
+                name: `${item.name}`.charAt(0).toLocaleUpperCase() + `${item.name}`.slice(1).toLowerCase(),
+                description: shrinkString(item.description),
+                date: moment(item.date).format("YYYY/MM/DD HH:mm"),
+            }
+        })
+
+        // Shrink string
+        function shrinkString(str) {
+            if (str.length >= 15) {
+                return str.substring(0, 15) + "...";
+            }
+            else {
+                return str;
+            }
+        }
         let galleryElemQuantity;
         // Определить количество элементов, которые будете показывать в галерее. 
         switch (lineSelector.value) {
@@ -92,7 +76,6 @@
                 break;
         }
 
-        //с помощю replace
         function replaceStrings() {
             let resultHTML = "";
             for (let i = 0; i < galleryElemQuantity; i++) {
@@ -144,12 +127,12 @@
 
         function createElement() {
             for (let i = 0; i < galleryElemQuantity; i++) {
-                let divOne = document.createElement("div"),
-                        divTwo = document.createElement("div"),
-                        divThree = document.createElement("div"),
-                        divFour = document.createElement("div"),
-                        divFive = document.createElement("div"),
-                        image = document.createElement("img");
+                const divOne = document.createElement("div"),
+                    divTwo = document.createElement("div"),
+                    divThree = document.createElement("div"),
+                    divFour = document.createElement("div"),
+                    divFive = document.createElement("div"),
+                    image = document.createElement("img");
                 divOne.classList.add("col-sm-3", "col-xs-6");
                 image.src = mappedArr[i].url;
                 image.alt = mappedArr[i].name;

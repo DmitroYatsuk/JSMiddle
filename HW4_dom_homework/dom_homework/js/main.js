@@ -56,13 +56,9 @@
             case "2":
                 galleryElemQuantity = 6;
                 break;
-            default:
-                break;
         }
         // сначала снимаете значение с селектбокса, 
         switch (typeSelector.value) {
-            case 0:
-                break;
             case "1":
                 replaceStrings();
                 break;
@@ -71,8 +67,6 @@
                 break;
             case "3":
                 createElement();
-                break;
-            default:
                 break;
         }
 

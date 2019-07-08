@@ -88,11 +88,8 @@
                     .replace("$date", mappedArr[i].date);
             }
             firstBlock.innerHTML = resultHTML;
-            firstGroup.classList.add("show");
-            firstGroup.classList.remove("hide");
-            secondGroup.classList.add("hide");
+            firstGroup.classList.toggle("show");
             secondGroup.classList.remove("show");
-            thirdGroup.classList.add("hide");
             thirdGroup.classList.remove("show");
         }
 
@@ -110,11 +107,8 @@
                 resultHTML += tempItem;
             }
             secondBlock.innerHTML = resultHTML;
-            firstGroup.classList.add("hide");
             firstGroup.classList.remove("show");
-            secondGroup.classList.add("show");
-            secondGroup.classList.remove("hide");
-            thirdGroup.classList.add("hide");
+            secondGroup.classList.toggle("show");
             thirdGroup.classList.remove("show");
         }
 
@@ -144,12 +138,9 @@
                 divOne.appendChild(divTwo);
                 thirdBlock.appendChild(divOne);
             }
-            firstGroup.classList.add("hide");
             firstGroup.classList.remove("show");
-            secondGroup.classList.add("hide");
             secondGroup.classList.remove("show");
-            thirdGroup.classList.add("show");
-            thirdGroup.classList.remove("hide");
+            thirdGroup.classList.toggle("show");
         }
     }
 

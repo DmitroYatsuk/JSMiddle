@@ -1,14 +1,14 @@
 'use strict';
 (function () {
-
-
-    let btn = document.getElementById("play"),
+   let btn = document.getElementById("play"),
         firstBlock = document.querySelector('#first-line'),
         secondBlock = document.querySelector('#second-line'),
         thirdBlock = document.querySelector('#third-line'),
         firstGroup = document.querySelector('.first-group'),
         secondGroup = document.querySelector('.second-group'),
-        thirdGroup = document.querySelector('.third-group');
+        thirdGroup = document.querySelector('.third-group'),
+        lineSelector = document.getElementById("line-selector"),
+        typeSelector = document.getElementById("type-selector");
 
     // Copy of source data
     let copiedData = data.slice();
@@ -30,8 +30,8 @@
             url: `http://${item.url}`,
             name: `${item.name}`.charAt(0).toLocaleUpperCase() + `${item.name}`.slice(1).toLowerCase(),
             description: shrinkString(item.description),
-            //date: moment(item.date).format("YYYY/MM/DD HH:mm"),
-            date: newDate(item.date),
+            date: moment(item.date).format("YYYY/MM/DD HH:mm"),
+            //date: newDate(item.date),
         }
     })
 
@@ -62,8 +62,7 @@
     function init() {
         let galleryElemQuantity;
         // Определить количество элементов, которые будете показывать в галерее. 
-        let lineSelector = document.getElementById("line-selector").value;
-        switch (lineSelector) {
+        switch (lineSelector.value) {
             case "0":
                 galleryElemQuantity = mappedArr.length;
                 break;
@@ -77,8 +76,7 @@
                 break;
         }
         // сначала снимаете значение с селектбокса, 
-        let typeSelector = document.getElementById("type-selector").value;
-        switch (typeSelector) {
+        switch (typeSelector.value) {
             case 0:
                 break;
             case "1":
@@ -146,7 +144,7 @@
 
         function createElement() {
             for (let i = 0; i < galleryElemQuantity; i++) {
-                const divOne = document.createElement("div"),
+                let divOne = document.createElement("div"),
                         divTwo = document.createElement("div"),
                         divThree = document.createElement("div"),
                         divFour = document.createElement("div"),

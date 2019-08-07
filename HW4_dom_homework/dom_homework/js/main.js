@@ -63,6 +63,7 @@
     }
 
     function createElement(elements, mappedArr) {
+        thirdBlock.innerHTML = '';
         for (let i = 0; i < elements; i++) {
             const divOne = document.createElement("div"),
                 divTwo = document.createElement("div"),

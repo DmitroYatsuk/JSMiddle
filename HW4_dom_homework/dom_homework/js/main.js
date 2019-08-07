@@ -6,7 +6,7 @@
         thirdBlock = document.getElementById('third-line'),
         lineSelector = document.getElementById("line-selector"),
         typeSelector = document.getElementById("type-selector"),
-        groupList = document.querySelectorAll('.display-group');
+        groupList = document.querySelectorAll('.row[class*=group]');
 
     // Shrink string
     function shrinkString(str) {
@@ -20,7 +20,8 @@
         groupList[i].classList.remove('show');
         groupList[i].classList.add('hide');
         }
-        groupList[elementNumber].classList.add('show');
+        groupList[elementNumber - 1].classList.remove('hide');
+        groupList[elementNumber - 1].classList.add('show');
     }
 
     function replaceStrings(elements, mappedArr) {

@@ -1,10 +1,14 @@
 'use strict';
 (function () {
-    const btn = document.getElementById("add"),
+    const addBtn = document.getElementById("add"),
+        removeBtn = document.getElementsByClassName('btn'),
         result = document.getElementById('result'),
         filterSelector = document.getElementById("filter-selector"),
         count = document.getElementById("count");
         //groupList = document.querySelectorAll('.row[class*=group]');
+    
+    let counter = 0,
+        arrToDisplay = [];
 
     // Shrink string
     function shrinkString(str) {
@@ -14,8 +18,7 @@
         }
 
     function showResult(mappedArr) {
-        let counter = 0;
-        for (let i = 0; i < counter; i++) {
+        for (let i = 0; i < mappedArr.length; i++) {
         let resultHTML = "";
             resultHTML += `<div class="col-sm-3 col-xs-6">\
             <img src="${mappedArr[i].url}" alt="${mappedArr[i].name}" class="img-thumbnail">\
@@ -24,9 +27,9 @@
             <div class="text-muted top-padding">${mappedArr[i].description}</div>\
             <div class="text-muted">${mappedArr[i].date}</div>\
             </div>\
-            </div>`;
+            </div>
+            <button class="btn btn-danger" onclick="removeElement(event)">Удалить</button>`;
     }
-        counter += 1;
         result.innerHTML = resultHTML;
         count.innerHTML = counter;
     }
@@ -55,9 +58,21 @@
                 date: moment(item.date).format("YYYY/MM/DD HH:mm"),
             }
         })
+   }
 
-        showResult();
-        
-    }
-    btn.addEventListener("click", init);
+   function addElement(mappedArr) {
+       
+
+       counter += 1;
+       showResult();
+   }
+
+   function removeElement() {
+       showResult();
+   }
+
+    init();
+    addBtn.addEventListener("click", addElement);
+    result.addEventListener("click", removeElement);
+
 })();

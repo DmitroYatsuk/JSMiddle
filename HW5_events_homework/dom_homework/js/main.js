@@ -47,17 +47,24 @@ arrToDisplay = [];
         addElement(mappedArr);
     }
 
-    function removeElement(mappedArr) {
+    function removeElement(mappedArr, elemToDel) {
         if (counter >= 0) {
-            arrToDisplay = mappedArr.filter(item => item. == true);
-            counter += 1;
+            arrToDisplay.splice(elemToDel, 1);
+            counter -= 1;
             showResult(arrToDisplay, counter);
         }
         else alert("Sorry, no more elements.");
     }   
 
     let removeBtnHandler =  function (event) {
-        
+        console.log("event");
+        console.log(event);
+        console.log("currentTarget");
+        console.log(event.currentTarget);
+        console.log("target");
+        console.log(event.target);
+        //event.stopPropagation();
+        event.stopImmediatePropagation();
     }
 
     //    function init() {

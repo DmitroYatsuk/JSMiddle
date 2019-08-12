@@ -39,9 +39,12 @@ arrToDisplay = [];
             arrToDisplay.push(mappedArr[counter]);
             counter += 1;
             showResult(arrToDisplay, counter);
-        }
-        else if (counter === 9) {
-            //TODO: Set up rm btn backgnd to grey;
+            if (counter === 9) {
+                //TODO: Set up rm btn backgnd to grey;
+                //console.log(addBtn.className);
+                addBtn.className = "btn btn-dark";
+                //console.log(addBtn.className);
+            }
         }
         else alert("Sorry, no more elements.");
     }

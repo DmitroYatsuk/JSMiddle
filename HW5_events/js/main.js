@@ -43,7 +43,7 @@ arrToDisplay = [];
                 addBtn.style.backgroundColor = "grey";
             }
         }
-        else alert("Sorry, no more elements.");
+        else $("#myModal").modal(); //alert("Sorry, no more elements.");
     }
 
     let addBtnHandler = function (event) {

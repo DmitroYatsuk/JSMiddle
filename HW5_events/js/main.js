@@ -1,14 +1,13 @@
 'use strict';
 let counter = 0,
-arrToDisplay = [];
+    arrToDisplay = [];
 
 (function () {
     const addBtn = document.getElementById("add"),
-        //removeBtn = document.getElementsByClassName('btn'),
         result = document.getElementById('result'),
-        //filterSelector = document.getElementById("filter-selector"),
+        filter = document.getElementById("filter-selector"),
         count = document.getElementById("count");
-        //removeBtnList = document.querySelectorAll('.btn[class*=danger]');
+    //removeBtnList = document.querySelectorAll('.btn[class*=danger]');
 
     // Shrink string
     function shrinkString(str) {
@@ -37,11 +36,12 @@ arrToDisplay = [];
     function addElement(mappedArr) {
         if (counter < 10) {
             arrToDisplay.push(mappedArr[counter]);
-            counter += 1;
-            showResult(arrToDisplay, counter);
             if (counter === 9) {
                 addBtn.style.backgroundColor = "grey";
             }
+            counter += 1;
+            sortArray();
+            showResult(arrToDisplay, counter);
         }
         else $("#myModal").modal(); //alert("Sorry, no more elements.");
     }
@@ -57,9 +57,9 @@ arrToDisplay = [];
             showResult(arrToDisplay, counter);
         }
         else alert("Sorry, no more elements.");
-    }   
+    }
 
-    let removeBtnHandler =  function (event) {
+    let removeBtnHandler = function (event) {
         console.log("event");
         console.log(event);
         console.log("currentTarget");
@@ -70,7 +70,32 @@ arrToDisplay = [];
         event.stopImmediatePropagation();
     }
 
-    //    function init() {
+    function sortArray() {
+        localStorage['filter'] = filter.value;
+        switch (localStorage['filter']) {
+            case "1":
+                arrToDisplay.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case "2":
+                arrToDisplay.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            case "3":
+                arrToDisplay.sort((a, b) => b.date.localeCompare(a.date));
+                break;
+            case "4":
+                arrToDisplay.sort((a, b) => a.date.localeCompare(b.date));
+                break;
+        }
+    }
+
+    let filterHandler = function (event) {
+        sortArray();
+        showResult(arrToDisplay, counter);
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    filter.value = localStorage['filter'];
+
     // Copy of source data
     let copiedData = data.slice();
 
@@ -94,10 +119,8 @@ arrToDisplay = [];
             date: moment(item.date).format("YYYY/MM/DD HH:mm"),
         }
     })
-    //  }
 
-    //   init();
     addBtn.addEventListener("click", addBtnHandler);
     result.addEventListener("click", removeBtnHandler);
-
+    filter.addEventListener("change", filterHandler);
 })();

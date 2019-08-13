@@ -40,10 +40,7 @@ arrToDisplay = [];
             counter += 1;
             showResult(arrToDisplay, counter);
             if (counter === 9) {
-                //TODO: Set up rm btn backgnd to grey;
-                //console.log(addBtn.className);
-                addBtn.className = "btn btn-dark";
-                //console.log(addBtn.className);
+                addBtn.style.backgroundColor = "grey";
             }
         }
         else alert("Sorry, no more elements.");

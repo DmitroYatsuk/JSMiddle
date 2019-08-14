@@ -7,7 +7,6 @@ let counter = 0,
         result = document.getElementById('result'),
         filter = document.getElementById("filter-selector"),
         count = document.getElementById("count");
-    //removeBtnList = document.querySelectorAll('.btn[class*=danger]');
 
     // Shrink string
     function shrinkString(str) {
@@ -60,6 +59,8 @@ let counter = 0,
     }
 
     let removeBtnHandler = function (event) {
+        let removeBtnList = document.querySelectorAll('.btn[class*=danger]');
+        console.log(removeBtnList);
         console.log("event");
         console.log(event);
         console.log("currentTarget");

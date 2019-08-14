@@ -49,7 +49,7 @@ let counter = 0,
         addElement(mappedArr);
     }
 
-    function removeElement(mappedArr, elemToDel) {
+    function removeElement(elemToDel) {
         if (counter >= 0) {
             arrToDisplay.splice(elemToDel, 1);
             counter -= 1;
@@ -60,13 +60,13 @@ let counter = 0,
 
     let removeBtnHandler = function (event) {
         let removeBtnList = document.querySelectorAll('.btn[class*=danger]');
-        console.log(removeBtnList);
-        console.log("event");
-        console.log(event);
-        console.log("currentTarget");
-        console.log(event.currentTarget);
-        console.log("target");
-        console.log(event.target);
+        //I don't know how to delete a particular thumbnail... They have the same html structure.
+        //Should I apply some dynamic Ids or Classes to them???
+        
+        let target = event.target.parentElement.previousElementSibling;
+        let curSrc = target.currentSrc;
+        let idx = arrToDisplay.findIndex(item => item.url === curSrc);
+        removeElement();
         //event.stopPropagation();
         event.stopImmediatePropagation();
     }

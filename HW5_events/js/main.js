@@ -66,7 +66,7 @@ let counter = 0,
         let target = event.target.parentElement.previousElementSibling;
         let curSrc = target.currentSrc;
         let idx = arrToDisplay.findIndex(item => item.url === curSrc);
-        removeElement();
+        removeElement(idx);
         event.stopImmediatePropagation();
     }
 

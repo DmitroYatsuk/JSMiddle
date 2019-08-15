@@ -52,6 +52,9 @@ let counter = 0,
     function removeElement(elemToDel) {
         if (counter >= 0) {
             arrToDisplay.splice(elemToDel, 1);
+            if (counter < 9) {
+                addBtn.style.backgroundColor = "white";
+            }
             counter -= 1;
             showResult(arrToDisplay, counter);
         }
@@ -60,14 +63,10 @@ let counter = 0,
 
     let removeBtnHandler = function (event) {
         let removeBtnList = document.querySelectorAll('.btn[class*=danger]');
-        //I don't know how to delete a particular thumbnail... They have the same html structure.
-        //Should I apply some dynamic Ids or Classes to them???
-        
         let target = event.target.parentElement.previousElementSibling;
         let curSrc = target.currentSrc;
         let idx = arrToDisplay.findIndex(item => item.url === curSrc);
         removeElement();
-        //event.stopPropagation();
         event.stopImmediatePropagation();
     }
 

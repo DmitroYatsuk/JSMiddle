@@ -33,9 +33,9 @@ let counter = 0,
     }
 
     function addElement(mappedArr) {
-        if (counter < 10) {
+        if (counter < mappedArr.length) {
             arrToDisplay.push(mappedArr[counter]);
-            if (counter === 9) {
+            if (counter === mappedArr.length - 1) {
                 addBtn.style.backgroundColor = "grey";
             }
             counter += 1;
@@ -52,22 +52,24 @@ let counter = 0,
     function removeElement(elemToDel) {
         if (counter >= 0) {
             arrToDisplay.splice(elemToDel, 1);
-            if (counter < 9) {
+            if (counter < mappedArr.length - 1) {
                 addBtn.style.backgroundColor = "white";
             }
             counter -= 1;
+            sortArray();
             showResult(arrToDisplay, counter);
         }
-        else alert("Sorry, no more elements.");
+        else $("#myModal").modal();//alert("Sorry, no more elements.");
     }
 
     let removeBtnHandler = function (event) {
-        let removeBtnList = document.querySelectorAll('.btn[class*=danger]');
-        let target = event.target.parentElement.previousElementSibling;
-        let curSrc = target.currentSrc;
-        let idx = arrToDisplay.findIndex(item => item.url === curSrc);
-        removeElement();
-        event.stopImmediatePropagation();
+        if (event.target.localName === "button") {
+            let target = event.target.parentElement.previousElementSibling;
+            let curSrc = target.currentSrc;
+            let idx = arrToDisplay.findIndex(item => item.url === curSrc);
+            removeElement(idx);
+            event.stopImmediatePropagation();
+        }
     }
 
     function sortArray() {

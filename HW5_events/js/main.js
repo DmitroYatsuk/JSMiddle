@@ -42,7 +42,7 @@ let counter = 0,
             sortArray();
             showResult(arrToDisplay, counter);
         }
-        else $("#myModal").modal(); //alert("Sorry, no more elements.");
+        else $("#myModal").modal();
     }
 
     let addBtnHandler = function (event) {
@@ -59,7 +59,7 @@ let counter = 0,
             sortArray();
             showResult(arrToDisplay, counter);
         }
-        else $("#myModal").modal();//alert("Sorry, no more elements.");
+        else $("#myModal").modal();
     }
 
     let removeBtnHandler = function (event) {

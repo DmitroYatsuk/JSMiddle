@@ -3,7 +3,8 @@ const login = (function () {
         passwordInput = document.getElementById("inputPassword"),
         checkbox = document.getElementById("checkbox"),
         alert = document.getElementById("alert"),
-        submitBtn = document.getElementById("submit");
+        submitBtn = document.getElementById("submit"),
+        formSignin = document.getElementsByClassName("form-signin");
 
     function initComponent() {
         localStorage['login'] = "my@mail.com";
@@ -22,7 +23,8 @@ const login = (function () {
             alert.classList.add("hide");
             if (validateEmail(login)) {
                 if (localStorage['login'] === login && localStorage['pwd'] === pwd) {
-                    ///
+                    formSignin.classList.remove("show");
+                    formSignin.classList.add("hide");
                 }
             }
             else {
@@ -57,7 +59,6 @@ const login = (function () {
     }
 
     let submitHandler = function (e) {
-        console.log(e.target);
         inputFormValidation(loginInput.value, passwordInput.value);
     }
 

@@ -1,12 +1,13 @@
 'use strict';
-let counter = 0,
-    arrToDisplay = [];
 
 (function () {
     const addBtn = document.getElementById("add"),
         result = document.getElementById('result'),
         filter = document.getElementById("filter-selector"),
-        count = document.getElementById("count");
+        count = document.getElementById("count"),
+        arrToDisplay = [];
+
+    let counter = 0;
 
     // Shrink string
     function shrinkString(str) {
@@ -15,21 +16,23 @@ let counter = 0,
             : str;
     }
 
-    function showResult(arr, cnt) {
+    function showResult() {
         let resultHTML = "";
-        for (let i = 0; i < arr.length; i++) {
-            resultHTML += `<div class="col-md-3 col-sm-4 col-xs-6">\
-            <img src="${arr[i].url}" alt="${arr[i].name}" class="img-thumbnail">\
-            <div class="info-wrapper">\
-            <div class="text-muted">${arr[i].name}</div>\
-            <div class="text-muted top-padding">${arr[i].description}</div>\
-            <div class="text-muted">${arr[i].date}</div>\
-            <button class="btn btn-danger">Удалить</button>\
-            </div>\
-            </div>`;
+        arrToDisplay.forEach(function (car) {
+            resultHTML += `
+                            <div class="col-md-3 col-sm-4 col-xs-6">
+                            <img src="${car.url}" alt="${car.name}" class="img-thumbnail">
+                            <div class="info-wrapper">
+                            <div class="text-muted">${car.name}</div>
+                            <div class="text-muted top-padding">${car.description}</div>
+                            <div class="text-muted">${car.date}</div>
+                            <button class="btn btn-danger">Удалить</button>
+                            </div>
+                            </div>`;
         }
+        )
         result.innerHTML = resultHTML;
-        count.innerHTML = cnt;
+        count.innerHTML = counter;
     }
 
     function addElement(mappedArr) {
@@ -39,8 +42,8 @@ let counter = 0,
                 addBtn.style.backgroundColor = "grey";
             }
             counter += 1;
-            sortArray();
-            showResult(arrToDisplay, counter);
+            filterThumbnails ();
+            showResult();
         }
         else $("#myModal").modal();
     }
@@ -49,17 +52,16 @@ let counter = 0,
         addElement(mappedArr);
     }
 
-    function removeElement(elemToDel) {
+    function removeElement(idxToDel) {
         if (counter >= 0) {
-            arrToDisplay.splice(elemToDel, 1);
+            arrToDisplay.splice(idxToDel, 1);
             if (counter < mappedArr.length - 1) {
                 addBtn.style.backgroundColor = "white";
             }
             counter -= 1;
-            sortArray();
-            showResult(arrToDisplay, counter);
+            filterThumbnails ();
+            showResult();
         }
-        else $("#myModal").modal();
     }
 
     let removeBtnHandler = function (event) {
@@ -72,9 +74,10 @@ let counter = 0,
         }
     }
 
-    function sortArray() {
-        localStorage['filter'] = filter.value;
-        switch (localStorage['filter']) {
+    function filterThumbnails () {
+        let presetFilter = filter.value;
+        localStorage['filter'] = presetFilter;
+        switch (presetFilter) {
             case "1":
                 arrToDisplay.sort((a, b) => a.name.localeCompare(b.name));
                 break;
@@ -91,8 +94,8 @@ let counter = 0,
     }
 
     let filterHandler = function (event) {
-        sortArray();
-        showResult(arrToDisplay, counter);
+        filterThumbnails ();
+        showResult();
     }
 
     /////////////////////////////////////////////////////////////////////////

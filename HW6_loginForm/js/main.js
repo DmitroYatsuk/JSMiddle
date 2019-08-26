@@ -12,9 +12,9 @@ const login = (function () {
         showPwdBtn = document.getElementById("showPwd"),
         homeBtn = document.getElementById("home");
 
-    function setLogAndPass() {
-        localStorage['login'] = "my@mail.com";
-        localStorage['pwd'] = "password";
+    function setLogAndPass(login, pwd) {
+        localStorage['login'] = login;
+        localStorage['pwd'] = pwd;
     }
 
     function validateEmail(email) {
@@ -95,7 +95,7 @@ const login = (function () {
     }
 })();
 
-login.setLogAndPass();
+login.setLogAndPass("my@mail.com", "password");
 login.initComponent();
 
 /* if (checkbox.value === "remember-me") {

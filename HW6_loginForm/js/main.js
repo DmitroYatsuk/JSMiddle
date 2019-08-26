@@ -2,7 +2,7 @@
 const login = (function () {
     const loginInput = document.getElementById("inputEmail"),
         passwordInput = document.getElementById("inputPassword"),
-        checkbox = document.getElementById("checkbox"),
+ //       checkbox = document.getElementById("checkbox"),
         alert = document.getElementById("alert"),
         submitBtn = document.getElementById("submit"),
         formSignin = document.getElementById("form"),
@@ -22,10 +22,20 @@ const login = (function () {
         return re.test(email);
     }
 
+    function showAlertBox(alert) {
+        alert.innerText = `${alert}`;
+        alert.classList.remove("hide");
+        alert.classList.add("show");
+    }
+
+    function hideAlertBox() {
+        alert.classList.remove("show");
+        alert.classList.add("hide");
+    }
+
     function inputFormValidation(login, pwd) {
         if (login !== "" && pwd !== "") {
-            alert.classList.remove("show");
-            alert.classList.add("hide");
+            hideAlertBox();
             if (validateEmail(login)) {
                 if (localStorage['login'] === login && localStorage['pwd'] === pwd) {
                     formSignin.classList.remove("show");
@@ -36,32 +46,21 @@ const login = (function () {
                     userData.classList.add("show");
                 }
                 else {
-                    alert.innerText = "Wrong credentials!"
-                    alert.classList.remove("hide");
-                    alert.classList.add("show");
+                    showAlertBox("Wrong credentials!");
                 }
             }
             else {
-                alert.innerText = "Wrong login format!"
-                alert.classList.remove("hide");
-                alert.classList.add("show");
+                showAlertBox("Wrong login format!");
             }
-
         }
         else {
-            alert.innerText = "Wrong credentials!"
-            alert.classList.remove("hide");
-            alert.classList.add("show");
+            showAlertBox("Login or password shouldn't be empty!");
         }
-    }
-
-    function initComponent() {
-        inputFormValidation(loginInput.value, passwordInput.value);
     }
 
     let submitHandler = function (e) {
         e.preventDefault();
-        initComponent();
+        inputFormValidation(loginInput.value, passwordInput.value);
     }
 
     let showPwdHandler = function (e) {
@@ -78,31 +77,20 @@ const login = (function () {
         userData.classList.add("hide");
     }
 
-    //    loginInput.addEventListener("change", loginHandler);
-    //    passwordInput.addEventListener("change", passwordHandler);
-    submitBtn.addEventListener("click", submitHandler);
-    showPwdBtn.addEventListener("click", showPwdHandler);
-    homeBtn.addEventListener("click", homeBtnHandler);
+    function initComponent() {
+        submitBtn.addEventListener("click", submitHandler);
+        showPwdBtn.addEventListener("click", showPwdHandler);
+        homeBtn.addEventListener("click", homeBtnHandler);
+    }
 
-
-    /*     return {
-            initComponent: initComponent,
-            setLogAndPass: setLogAndPass
-        } */
+    return {
+        initComponent: initComponent,
+        setLogAndPass: setLogAndPass
+    }
 })();
 
 
-//login.setLogAndPass();
-//login.initComponent();
+login.setLogAndPass();
+login.initComponent();
 
 
-
-
-/* let loginHandler = function (e) {
-
-    console.log(e.target.value);
-}
-
-let passwordHandler = function (e) {
-    console.log(e.target.value);
-} */

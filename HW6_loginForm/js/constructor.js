@@ -1,8 +1,7 @@
 'use strict'
-const login = (function () {
+function Login () {
     const loginInput = document.getElementById("inputEmail"),
         passwordInput = document.getElementById("inputPassword"),
- //       checkbox = document.getElementById("checkbox"),
         alert = document.getElementById("alert"),
         submitBtn = document.getElementById("submit"),
         formSignin = document.getElementById("form"),
@@ -12,9 +11,15 @@ const login = (function () {
         showPwdBtn = document.getElementById("showPwd"),
         homeBtn = document.getElementById("home");
 
-    function setLogAndPass(login, pwd) {
+    this.setLogAndPass = function (login, pwd) {
         localStorage['login'] = login;
         localStorage['pwd'] = pwd;
+    }
+
+    this.initComponent = function () {
+        submitBtn.addEventListener("click", submitHandler);
+        showPwdBtn.addEventListener("click", showPwdHandler);
+        homeBtn.addEventListener("click", homeBtnHandler);
     }
 
     function validateEmail(email) {
@@ -82,22 +87,8 @@ const login = (function () {
         showClass(formSignin);
         hideClass(userData);
     };
+}
 
-    function initComponent() {
-        submitBtn.addEventListener("click", submitHandler);
-        showPwdBtn.addEventListener("click", showPwdHandler);
-        homeBtn.addEventListener("click", homeBtnHandler);
-    }
-
-    return {
-        initComponent: initComponent,
-        setLogAndPass: setLogAndPass
-    }
-})();
-
-login.setLogAndPass("my@mail.com", "password");
-login.initComponent();
-
-/* if (checkbox.value === "remember-me") {
-    localStorage['checkbox'] = 
-} */
+const guest1 = new Login();
+guest1.setLogAndPass("my@mail.com", "password");
+guest1.initComponent();

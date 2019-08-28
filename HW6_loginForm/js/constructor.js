@@ -77,8 +77,10 @@ function Login () {
     };
 
     let showPwdHandler = function (e) {
-        userPassword.type === 'password' ? userPassword.type = 'text' : userPassword.type = 'password';
-        e.target.innerText === "Show password" ? e.target.innerText = 'Hide password' : e.target.innerText = 'Show password';
+        userPassword.type === 'password' 
+        ? userPassword.type = 'text' : userPassword.type = 'password';
+        e.target.innerText === "Show password" 
+        ? e.target.innerText = 'Hide password' : e.target.innerText = 'Show password';
     };
 
     let homeBtnHandler = function () {
